@@ -1,7 +1,12 @@
 import { useState } from "react";
 
-function ListGroup() {
-    const items = ["Mary", "John", "Gertrude", "Jeremy", "Grady", "Thomas"];
+interface Props {
+    items: string[];
+    title: string;
+}
+
+function ListGroup(props: Props) {
+    let { items, title } = props;
 
     let [selected, setIndex] = useState(-1);
 
@@ -9,7 +14,7 @@ function ListGroup() {
 
     return (
         <>
-            <h1>List Group</h1>
+            <h1>{title}</h1>
             <br />
 
             {selected != -1 && msg}
