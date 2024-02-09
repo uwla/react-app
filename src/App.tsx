@@ -17,7 +17,14 @@ function App() {
 
     return (
         <>
+            <ListGroup
+                title="Cities"
+                items={items}
+                onSelectedItem={handleSelected}
+            />
+
             <If condition={showInfo}>
+                <br />
                 <Alert
                     variant="info"
                     dismissible={true}
@@ -26,12 +33,6 @@ function App() {
                     You selected <b>{selected}</b>
                 </Alert>
             </If>
-
-            <ListGroup
-                title="Cities"
-                items={items}
-                onSelectedItem={handleSelected}
-            />
         </>
     );
 }
