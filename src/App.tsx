@@ -1,38 +1,32 @@
-import { useState } from "react";
-import ListGroup from "./components/ListGroup";
-import Alert from "./components/Alert";
-import If from "./components/If";
 import "./App.css";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import About from "./pages/About";
+import Cities from "./pages/Cities";
+import Index from "./pages/Index";
 
 function App() {
-    const items = ["New York", "San Diego", "Chicago", "Boston", "Miami"];
-
-    let [selected, setSelected] = useState("");
-    let [showInfo, setInfoVisibility] = useState(false);
-
-    const handleSelected = (item: string) => {
-        setSelected(item);
-        setInfoVisibility(true);
-    };
-
     return (
         <>
-            <ListGroup
-                title="Cities"
-                items={items}
-                onSelectedItem={handleSelected}
-            />
-
-            <If condition={showInfo}>
+            <Router>
+                <ul className="nav nav-pills">
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/">Home</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/cities">Cities </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/about">About </Link>
+                    </li>
+                </ul>
                 <br />
-                <Alert
-                    variant="info"
-                    dismissible={true}
-                    onDismiss={() => setInfoVisibility(false)}
-                >
-                    You selected <b>{selected}</b>
-                </Alert>
-            </If>
+                <br />
+                <Routes>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/cities" element={<Cities />} />
+                </Routes>
+            </Router>
         </>
     );
 }
