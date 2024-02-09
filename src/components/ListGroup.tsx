@@ -1,13 +1,15 @@
 function ListGroup() {
+    const items = ["Mary", "John", "Gertrude", "Jeremy", "Grady", "Thomas"];
+
     return (
         <>
             <h1>List Group</h1>
             <ul className="list-group">
-                <li className="list-group-item">Mary</li>
-                <li className="list-group-item">John</li>
-                <li className="list-group-item">Gertrude</li>
-                <li className="list-group-item">Jeremy</li>
-                <li className="list-group-item">Grady</li>
+                {items.map((item, index) => (
+                    <li key={index} className="list-group-item">
+                        {item}
+                    </li>
+                ))}
             </ul>
         </>
     );
