@@ -1,30 +1,35 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import About from "./pages/About";
-import Cities from "./pages/Cities";
-import Index from "./pages/Index";
+import routes from "./routes";
 
 function App() {
+    const listItems = routes.map((item: any) => {
+        const [path, title, _] = item;
+        return (
+            <li className="nav-item">
+                <Link className="nav-link" to={path}>
+                    {title}
+                </Link>
+            </li>
+        );
+    });
+
+    const routeItems = routes.map((item: any) => {
+        const [path, _, element] = item;
+        return (
+            <Route path={path} element={element}/>
+        );
+    })
+
     return (
         <>
             <Router>
                 <ul className="nav nav-pills">
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/">Home</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/cities">Cities </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/about">About </Link>
-                    </li>
+                    {listItems}
                 </ul>
-                <br />
-                <br />
+                <hr />
                 <Routes>
-                    <Route path="/" element={<Index />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/cities" element={<Cities />} />
+                    {routeItems}
                 </Routes>
             </Router>
         </>
