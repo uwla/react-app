@@ -3,21 +3,23 @@ import { useState } from "react";
 interface Props {
     items: string[];
     title: string;
+    onSelectedItem: (item: string) => void;
 }
 
 function ListGroup(props: Props) {
-    let { items, title } = props;
+    let { items, title, onSelectedItem } = props;
 
     let [selected, setIndex] = useState(-1);
 
-    let msg = <p>You selected {items[selected]}</p>;
+    const handleClick = (index: number) => {
+        setIndex(index);
+        onSelectedItem(items[index]);
+    };
 
     return (
         <>
             <h1>{title}</h1>
             <br />
-
-            {selected != -1 && msg}
 
             <ul className="list-group">
                 {items.map((item, index) => (
@@ -28,7 +30,7 @@ function ListGroup(props: Props) {
                                 ? "list-group-item"
                                 : "list-group-item active"
                         }
-                        onClick={() => setIndex(index)}
+                        onClick={() => handleClick(index)}
                     >
                         {item}
                     </li>
