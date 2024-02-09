@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "./App.css";
 import ListGroup from "./components/ListGroup";
-import AlertInfo from "./components/AlertInfo";
+import Alert from "./components/Alert";
+import "./App.css";
 
 function App() {
     const items = ["New York", "San Diego", "Chicago", "Boston", "Miami"];
@@ -15,9 +15,9 @@ function App() {
     return (
         <div>
             {selected != "" && (
-                <AlertInfo>
+                <Alert variant="info">
                     You selected <b>{selected}</b>
-                </AlertInfo>
+                </Alert>
             )}
 
             <ListGroup
