@@ -1,36 +1,16 @@
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import routes from "./routes";
+import { BrowserRouter as Router } from "react-router-dom";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import Main from "./components/Main";
 
 function App() {
-    const listItems = routes.map((item: any) => {
-        const [path, title, _] = item;
-        return (
-            <li className="nav-item">
-                <Link className="nav-link" to={path}>
-                    {title}
-                </Link>
-            </li>
-        );
-    });
-
-    const routeItems = routes.map((item: any) => {
-        const [path, _, element] = item;
-        return (
-            <Route path={path} element={element}/>
-        );
-    })
-
     return (
         <>
             <Router>
-                <ul className="nav nav-pills">
-                    {listItems}
-                </ul>
-                <hr />
-                <Routes>
-                    {routeItems}
-                </Routes>
+                <Navbar />
+                <Main />
+                <Footer />
             </Router>
         </>
     );
