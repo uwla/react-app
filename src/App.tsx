@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ListGroup from "./components/ListGroup";
 import Alert from "./components/Alert";
+import If from "./components/If";
 import "./App.css";
 
 function App() {
@@ -13,19 +14,19 @@ function App() {
     };
 
     return (
-        <div>
-            {selected != "" && (
+        <>
+            <If condition={selected != ''}>
                 <Alert variant="info">
                     You selected <b>{selected}</b>
                 </Alert>
-            )}
+            </If>
 
             <ListGroup
                 title="Cities"
                 items={items}
                 onSelectedItem={handleSelected}
             />
-        </div>
+        </>
     );
 }
 
